@@ -17,7 +17,7 @@ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
            shutdown
     )pbdoc";
 
-    py::class_<datastates_llm_t>(m, "handle")
+    py::class_<datastates_llm_t>(m, "CkptEngineCpp")
         .def(py::init<const size_t, int, int>())
         .def("ckpt_tensor", &datastates_llm_t::ckpt_tensor, py::call_guard<py::gil_scoped_release>())
         .def("restore_tensor", &datastates_llm_t::restore_tensor, py::call_guard<py::gil_scoped_release>())

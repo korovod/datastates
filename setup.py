@@ -4,11 +4,11 @@ from torch.utils.cpp_extension import BuildExtension, CUDAExtension
 
 
 # Define CPP/CUDA extensions for the checkpointing engine.
-ckpt_engine_path = "datastates/ckpt/src/"
+ckpt_engine_path = "src/"
 abs_ckpt_engine_path=pathlib.Path(f"{pathlib.Path(__file__).parent.resolve()}/{ckpt_engine_path}")
 extensions = [
     CUDAExtension(
-        name=f"datastates.ckpt.src",
+        name=f"ckpt_engine",
         sources=[f'{ckpt_engine_path}/pool/mem_pool.cpp', 
                     f'{ckpt_engine_path}/tiers/gpu_tier.cpp', 
                     f'{ckpt_engine_path}/tiers/host_tier.cpp', 

@@ -11,10 +11,10 @@ cd datastates-llm/
 pip install . -v            # Installs the CPP/Python binding.
 
 # Test with a simple PyTorch code, DeepSpeed not required.
-python datastates/tests/test_ckpt_engine.py   
+python tests/test_ckpt_engine.py   
 
 # Test with a simple DeepSpeed code.
-python datastates/tests/test_datastates_llm.py   
+python tests/test_datastates_llm.py   
 ```
 
 ### Linking with DeepSpeed

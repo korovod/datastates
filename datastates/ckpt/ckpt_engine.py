@@ -1,4 +1,4 @@
-from datastates.ckpt.src import handle as datastates_handle
+from ckpt_engine import CkptEngineCpp
 import torch
 import time
 import sys
@@ -9,7 +9,7 @@ from datastates.utils import get_logger
 class CkptEngine:
     def __init__(self, host_cache_size, gpu_device_id, rank) -> None:
         try:
-            self.ckpt_engine = datastates_handle(host_cache_size, gpu_device_id, rank)
+            self.ckpt_engine = CkptEngineCpp(host_cache_size, gpu_device_id, rank)
             self.logger = get_logger(__name__)
             self.last_ckpt_version = -1
         except Exception as exc:
