@@ -1,28 +1,32 @@
 import torch
-from datastates.ckpt import CkptEngine
 import time
 
+from datastates.ckpt import CkptEngine
+
+
 def test_ckpt_engine():
-    print(f"Going to initalize datastates engine...")
+    print(f"Going to initialize datastates engine...")
+
     ckpt_engine = CkptEngine(host_cache_size=(2 << 30), gpu_device_id=0, rank=0)
+
     device = torch.device("cpu")    
     if torch.cuda.is_available():
         print(f"Found {torch.cuda.device_count()} CUDA devices")
         device = torch.device("cuda:0")
-    
+
     tensor_shape = torch.Size([256, 256])
     tensor_dtype = torch.bfloat16
     tensor1 = torch.randn(tensor_shape, dtype=tensor_dtype).to(device)
     tensor2 = torch.randn(tensor_shape, dtype=tensor_dtype).to(device)
-    tensor_bytes = tensor1.numel()*tensor1.element_size()
+    tensor_bytes = tensor1.numel() * tensor1.element_size()
 
     ckpt_path = "/dev/shm/datastates-ckpt.pt"
 
     file_offset = 0
-    version = 1
+    version = "1"
     tensors = [
         (version, tensor1, file_offset, ckpt_path),
-        (version, tensor2, file_offset+tensor_bytes, ckpt_path),
+        (version, tensor2, file_offset + tensor_bytes, ckpt_path),
     ]
 
     print(f"Invoking async checkpoint...")
@@ -35,12 +39,10 @@ def test_ckpt_engine():
     rec_tensor2 = tensor2.clone().zero_().cpu()
     rec_tensors = [
         (version, rec_tensor1, file_offset, ckpt_path),
-        (version, rec_tensor2, file_offset+tensor_bytes, ckpt_path),
+        (version, rec_tensor2, file_offset + tensor_bytes, ckpt_path),
     ]
     ckpt_engine.load(rec_tensors)
     print(f"Loaded checkpoint successfully")
         
 if __name__ == "__main__":
     test_ckpt_engine()
-
-

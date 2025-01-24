@@ -10,17 +10,19 @@
 namespace py = pybind11;
 
 static volatile uint64_t local_uid = 1;
+
 class datastates_llm_t {
+
     host_tier_t* host_tier;
     gpu_tier_t* gpu_tier;
     bool is_active = true;
     int gpu_id = 0;
     int rank = -1;
     
-    public:
+public:
     datastates_llm_t(size_t host_cache_size, int gpu_id, int rank=-1);
-    void ckpt_tensor(int version, const torch::Tensor &t, const std::uint64_t size, const std::uint64_t file_offset, std::string path);
-    void restore_tensor(int version, const torch::Tensor &t, const std::uint64_t size, const std::uint64_t file_offset, std::string path);
+    void ckpt_tensor(std::string version, const torch::Tensor &t, const std::uint64_t size, const std::uint64_t file_offset, std::string path);
+    void restore_tensor(std::string version, const torch::Tensor &t, const std::uint64_t size, const std::uint64_t file_offset, std::string path);
     void wait();
     void shutdown();
 };
