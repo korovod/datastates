@@ -2,7 +2,7 @@
 
 Efficient asynchronous checkpointing engine for Nanotron.
 
-For detailed description about design principles, implementation, and performance evaluation against state-of-the-art checkpointing engines, please refer [our HPDC'24 paper](https://hal.science/hal-04614247).
+For a detailed description about design principles, implementation, and performance evaluation against state-of-the-art checkpointing engines, please refer to the [HPDC'24 paper](https://hal.science/hal-04614247).
 
 ## Usage
 
@@ -25,7 +25,7 @@ pip install . -v
 ### Using DataStates in your Python project
 
 ```python
-from datastates.ckpt import CkptEngine
+from datastates import CkptEngine
 ```
 
 
