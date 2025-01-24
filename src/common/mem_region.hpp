@@ -1,12 +1,15 @@
 #ifndef __DATASTATES_MEM_REGION_HPP
 #define __DATASTATES_MEM_REGION_HPP
+
 #include <iostream>
 #include <limits.h>
 #include <deque>
+#include <cstdint>
+
 #include "defs.hpp"
 
-
 struct mem_region_t {
+
     const int           version;            // Checkpoint version.
     const uint64_t      uid;                // Unique memory region identifier.
     char*               ptr;                // Pointer of this memory region (can be either on GPU/CPU)
@@ -14,6 +17,7 @@ struct mem_region_t {
     const size_t        file_start_offset;  // Start offset in file
     const std::string   path;               // Pathname of the checkpoint file.
     TIER_TYPES          curr_tier_type;     // Memory/cache tier on which it currently resides
+
     mem_region_t(const int version_, const uint64_t uid_, char* const ptr_, 
         const size_t size_, const size_t file_start_offset_, const std::string path_, TIER_TYPES tier): 
         version(version_), uid(uid_), ptr(ptr_), size(size_), file_start_offset(file_start_offset_), path(path_), curr_tier_type(tier) {};
