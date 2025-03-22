@@ -1,6 +1,6 @@
-# DataStates-nanotron
+# DataStates
 
-Efficient asynchronous checkpointing engine for Nanotron.
+Efficient asynchronous checkpointing engine.
 
 For a detailed description about design principles, implementation, and performance evaluation against state-of-the-art checkpointing engines, please refer to the [HPDC'24 paper](https://hal.science/hal-04614247).
 
@@ -14,9 +14,21 @@ For a detailed description about design principles, implementation, and performa
 
 ### Installation
 
+Using Spack:
+
 ```
-git clone https://github.com/thomas-bouvier/datastates-nanotron.git
-cd datastates-nanotron
+git clone -c feature.manyFiles=true --depth=2 https://github.com/spack/spack.git
+git clone https://github.com/korovod/korovod-spack-packages.git
+cd spack/bin
+./spack repo add korovod-spack-packages
+./spack install py-datastates
+```
+
+Using pip:
+
+```
+git clone https://github.com/korovod/datastates.git
+cd datastates
 
 # Install the CPP/Python binding
 pip install . -v
@@ -27,7 +39,6 @@ pip install . -v
 ```python
 from datastates import CkptEngine
 ```
-
 
 ## Tests
 
