@@ -26,8 +26,7 @@ extensions = [
             f"{abs_ckpt_engine_path}/tiers",
             f"{abs_ckpt_engine_path}",
             pybind11_include_path
-        ],
-        extra_compile_args={'cxx': ['-g', '-fvisibility=hidden'], 'nvcc': ['-O2']}
+        ]
     )
 ]
 
